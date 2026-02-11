@@ -1,0 +1,44 @@
+<!-- security.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0f19" />
+  <meta name="description" content="Security overview for DopShield V2." />
+  <title>Security — DopShield V2</title>
+  <style>
+    :root{--bg:#0b0f19;--panel:#10182b;--text:#e7ecff;--muted:#a9b4d0;--border:rgba(255,255,255,.12);--radius:18px;--max:860px;--font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    @media (prefers-color-scheme: light){:root{--bg:#f6f8ff;--panel:#fff;--text:#0b1020;--muted:#44506a;--border:rgba(11,16,32,.12)}}
+    body{margin:0;font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6}
+    .wrap{max-width:var(--max);margin:0 auto;padding:26px 18px}
+    .card{background:color-mix(in oklab, var(--panel) 92%, transparent);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+    a{color:inherit}
+    p,li{color:var(--muted)}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a href="/index.html">Back</a>
+      <span>Last updated: 2026-01-01</span>
+    </div>
+    <div class="card">
+      <h1>Security</h1>
+      <p>We design for privacy and safety at the same time. We do not market or build for illicit concealment.</p>
+      <h2>Core controls</h2>
+      <ul>
+        <li>Passkeys supported. Optional 2FA.</li>
+        <li>Client-side encryption for protected payloads where enabled.</li>
+        <li>Short retention for metadata where feasible.</li>
+        <li>Rate limits, anomaly detection, and abuse response.</li>
+        <li>Approval-gated audit mode for scoped disclosures.</li>
+      </ul>
+      <h2>Reporting</h2>
+      <p>If you find a vulnerability, email hello@example.com with steps to reproduce. Do not exfiltrate data.</p>
+    </div>
+  </div>
+</body>
+</html>
