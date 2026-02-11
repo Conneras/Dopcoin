@@ -1,458 +1,72 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" content="#0b0f19" />
-  <meta name="description" content="DopShield V2: privacy-first accounts and payments for verified participants. Strong encryption, minimal data, selective disclosure, and audit-ready controls." />
-  <meta name="robots" content="index,follow" />
-
-  <meta property="og:title" content="DopShield V2 — Privacy with compliance" />
-  <meta property="og:description" content="Gated onboarding. Minimal data. End-to-end encryption. Selective disclosure. Audit-ready controls." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://example.com" />
-  <meta property="og:image" content="https://example.com/og.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="robots" href="/robots.txt" />
-
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
-
-  <title>DopShield V2 — Privacy with compliance</title>
-
+  <meta charset="utf-8">
+  <title>DopCoin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DopCoin. Privacy for verified capital.">
   <style>
-    :root{
-      --bg:#0b0f19;--panel:#10182b;--text:#e7ecff;--muted:#a9b4d0;--border:rgba(255,255,255,.12);
-      --accent:#6aa6ff;--ok:#6dff9b;--warn:#ffd36a;--danger:#ff6a6a;
-      --shadow:0 16px 40px rgba(0,0,0,.35);--radius:18px;--max:1120px;
-      --focus:0 0 0 3px rgba(106,166,255,.45);
-      --font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
-    @media (prefers-color-scheme: light){
-      :root{--bg:#f6f8ff;--panel:#ffffff;--text:#0b1020;--muted:#44506a;--border:rgba(11,16,32,.12);--shadow:0 16px 40px rgba(11,16,32,.10);}
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;font-family:var(--font);color:var(--text);line-height:1.5;
-      background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(106,166,255,.22), transparent 60%),
-        radial-gradient(900px 600px at 80% 0%, rgba(109,255,155,.10), transparent 55%),
-        var(--bg);
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    .wrap {
+      max-width: 640px;
+      padding: 24px;
     }
-    a{color:inherit;text-decoration:none}
-    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:none;box-shadow:var(--focus);border-radius:10px}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
-    .skip{position:absolute;left:-999px;top:12px;background:var(--panel);padding:10px 14px;border:1px solid var(--border);border-radius:12px;z-index:1000}
-    .skip:focus{left:12px}
-
-    header{
-      position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
-      background:color-mix(in oklab, var(--bg) 80%, transparent);
-      border-bottom:1px solid var(--border);
+    h1 {
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin: 0 0 24px;
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:14px;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg, rgba(106,166,255,.95), rgba(109,255,155,.75));box-shadow:0 12px 30px rgba(106,166,255,.18)}
-    nav ul{list-style:none;display:flex;gap:14px;padding:0;margin:0;flex-wrap:wrap}
-    nav a{padding:10px 12px;border-radius:12px;color:var(--muted);border:1px solid transparent}
-    nav a:hover{color:var(--text);border-color:var(--border);background:color-mix(in oklab, var(--panel) 70%, transparent)}
-
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      border-radius:14px;padding:11px 14px;border:1px solid var(--border);
-      background:color-mix(in oklab, var(--panel) 80%, transparent);color:var(--text);cursor:pointer;font-weight:650;min-height:44px
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #e5e5e5;
+      margin: 0 0 32px;
     }
-    .btn.primary{border-color:color-mix(in oklab, var(--accent) 45%, var(--border));background:linear-gradient(180deg, rgba(106,166,255,.22), rgba(106,166,255,.12))}
-    .btn:hover{transform:translateY(-1px)}
-    .btn:active{transform:translateY(0)}
-    main{padding:34px 0 70px}
-
-    .card{background:color-mix(in oklab, var(--panel) 88%, transparent);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .hero{display:grid;grid-template-columns:1.25fr .9fr;gap:22px;align-items:start}
-    @media (max-width:940px){.hero{grid-template-columns:1fr}}
-    .hero-left{padding:26px}
-    .kicker{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:color-mix(in oklab, var(--panel) 70%, transparent);color:var(--muted);font-weight:650;font-size:14px}
-    .dot{width:10px;height:10px;border-radius:50%;background:var(--ok)}
-    h1{margin:16px 0 10px;font-size:clamp(32px, 4vw, 46px);line-height:1.1}
-    .lead{margin:0 0 18px;color:var(--muted);font-size:16.5px;max-width:62ch}
-    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 22px}
-    .pill{border:1px solid var(--border);background:color-mix(in oklab, var(--panel) 70%, transparent);padding:9px 12px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px}
-
-    .hero-right{padding:18px}
-    .panel{padding:18px;border-radius:16px;border:1px solid var(--border);background:color-mix(in oklab, var(--panel) 75%, transparent)}
-    .panel h2{margin:0 0 10px;font-size:18px}
-    .panel p{margin:0 0 14px;color:var(--muted)}
-    .form{display:grid;gap:10px;margin-top:10px}
-    label{font-size:14px;color:var(--muted)}
-    input,textarea{
-      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--border);
-      background:color-mix(in oklab, var(--panel) 65%, transparent);color:var(--text);font:inherit;min-height:44px
+    .cta {
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #fff;
     }
-    textarea{min-height:90px;resize:vertical}
-
-    .grid3{margin-top:22px;display:grid;grid-template-columns:repeat(3, 1fr);gap:14px}
-    @media (max-width:940px){.grid3{grid-template-columns:1fr}}
-    .feat{padding:16px}
-    .feat h3{margin:8px 0 6px;font-size:16px}
-    .feat p{margin:0;color:var(--muted);font-size:14.5px}
-    .icon{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;border:1px solid var(--border);background:color-mix(in oklab, var(--panel) 70%, transparent);font-weight:900}
-
-    section{margin-top:24px}
-    .section-card{padding:20px}
-    .section-title{margin:0 0 10px;font-size:22px}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-    @media (max-width:940px){.two{grid-template-columns:1fr}}
-    .list{margin:0;padding-left:18px;color:var(--muted)}
-    .list li{margin:8px 0}
-
-    .pricing{display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;margin-top:14px}
-    @media (max-width:940px){.pricing{grid-template-columns:1fr}}
-    .price{padding:18px}
-    .tag{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted);font-weight:650;font-size:13px;margin-bottom:10px}
-    .money{font-size:34px;margin:8px 0 2px;font-weight:900}
-    .small{color:var(--muted);margin:0 0 14px}
-
-    footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted)}
-    .foot{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:start}
-    @media (max-width:940px){.foot{grid-template-columns:1fr}}
-    .links{display:flex;flex-wrap:wrap;gap:12px}
-    .links a{color:var(--muted);padding:8px 10px;border-radius:12px;border:1px solid transparent}
-    .links a:hover{border-color:var(--border);color:var(--text);background:color-mix(in oklab, var(--panel) 70%, transparent)}
-
-    .cookie{position:fixed;left:14px;right:14px;bottom:14px;z-index:60;display:none}
-    .cookie .card{padding:14px}
-    .cookie-row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .cookie p{margin:0;color:var(--muted);max-width:80ch}
-    .badge{display:inline-flex;gap:8px;align-items:center;font-weight:700;color:var(--text)}
-    .badge .b{width:10px;height:10px;border-radius:50%}
-    .b.ok{background:var(--ok)}
-    .b.warn{background:var(--warn)}
+    .cta span {
+      display: block;
+      margin-top: 12px;
+      font-size: 15px;
+      color: #aaa;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 2px;
+    }
   </style>
 </head>
-
 <body>
-  <a class="skip" href="#content">Skip to content</a>
-
-  <header>
-    <div class="wrap">
-      <div class="nav" role="navigation" aria-label="Primary">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <span>DopShield V2</span>
-        </div>
-
-        <nav aria-label="Site">
-          <ul>
-            <li><a href="#model">Model</a></li>
-            <li><a href="#controls">Controls</a></li>
-            <li><a href="#security">Security</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </nav>
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn" href="#contact">Get the spec</a>
-          <a class="btn primary" href="#pricing">Start</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main id="content">
-    <div class="wrap">
-      <div class="hero">
-        <div class="card hero-left">
-          <div class="kicker"><span class="dot" aria-hidden="true"></span>Privacy-first. Verified access. Audit-ready.</div>
-          <h1>Privacy with compliance, not secrecy.</h1>
-          <p class="lead">
-            DopShield V2 is a gated privacy layer for verified participants. You get encryption, data minimization, and selective disclosure.
-            You also get controls that regulators and payment partners expect.
-          </p>
-
-          <div class="pill-row" aria-label="Key points">
-            <div class="pill">KYC + source-of-funds onboarding</div>
-            <div class="pill">Non-transferable verified credential</div>
-            <div class="pill">Private internal ledger</div>
-            <div class="pill">Batched public-chain settlement</div>
-            <div class="pill">Selective disclosure</div>
-          </div>
-
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn primary" href="#contact">Request access</a>
-            <a class="btn" href="#model">See the system</a>
-          </div>
-
-          <div class="grid3" aria-label="Highlights">
-            <div class="card feat">
-              <div class="icon" aria-hidden="true">1</div>
-              <h3>Gated entry</h3>
-              <p>Tiered access based on verification and risk scoring. Allowlist for early cohorts.</p>
-            </div>
-            <div class="card feat">
-              <div class="icon" aria-hidden="true">2</div>
-              <h3>Private by design</h3>
-              <p>Keep user activity off public ledgers by default. Settle in batches when needed.</p>
-            </div>
-            <div class="card feat">
-              <div class="icon" aria-hidden="true">3</div>
-              <h3>Audit without mass exposure</h3>
-              <p>Scoped disclosure that’s time-bound and approval-gated. No blanket surveillance.</p>
-            </div>
-          </div>
-        </div>
-
-        <aside class="card hero-right" aria-label="Spec request">
-          <div class="panel">
-            <h2>Get the V2 architecture pack</h2>
-            <p>Flows, controls, and a rollout plan for a compliant privacy product.</p>
-
-            <form class="form" id="contact" aria-label="Contact form">
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@domain.com" />
-              </div>
-              <div>
-                <label for="jurisdiction">Target jurisdiction</label>
-                <input id="jurisdiction" name="jurisdiction" type="text" placeholder="EU, UK, US, Global" />
-              </div>
-              <div>
-                <label for="msg">What’s the use case?</label>
-                <textarea id="msg" name="msg" placeholder="Wallet, payments, payroll, messaging, platform credits, etc."></textarea>
-              </div>
-              <button class="btn primary" type="submit">Send</button>
-              <p class="small">No third-party trackers. Analytics off by default.</p>
-            </form>
-
-            <div style="margin-top:14px;display:flex;gap:14px;flex-wrap:wrap">
-              <span class="badge"><span class="b ok" aria-hidden="true"></span>Lawful use</span>
-              <span class="badge"><span class="b warn" aria-hidden="true"></span>Abuse controls</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-
-      <section id="model" class="card section-card" aria-label="System model">
-        <h2 class="section-title">System model</h2>
-        <div class="two">
-          <div class="panel">
-            <h3>1) Onboarding and credentials</h3>
-            <ul class="list">
-              <li>KYC, sanctions/PEP, and source-of-funds checks at entry.</li>
-              <li>Issue a revocable, non-transferable “Verified” credential.</li>
-              <li>Credential proves eligibility without exposing identity in everyday use.</li>
-              <li>Tiered access based on risk score and limits.</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>2) Private ledger with controlled settlement</h3>
-            <ul class="list">
-              <li>Most transfers happen on an internal encrypted ledger.</li>
-              <li>Public-chain settlement runs in batches to reduce linkage.</li>
-              <li>Policy engine decides when settlement happens and for whom.</li>
-              <li>Clear receipts and dispute flows without excess data collection.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="panel" style="margin-top:14px;">
-          <h3>3) Selective disclosure</h3>
-          <ul class="list">
-            <li>Users can prove eligibility, limits, or ownership without revealing full history.</li>
-            <li>Audit mode produces scoped, time-bound disclosures for specific cases.</li>
-            <li>Disclosure requires approvals and leaves an immutable internal audit trail.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="controls" class="card section-card" aria-label="Controls">
-        <h2 class="section-title">Controls that stop abuse</h2>
-        <div class="two">
-          <div class="panel">
-            <h3>Real-time defenses</h3>
-            <ul class="list">
-              <li>Velocity limits, spending caps, and tier-based constraints.</li>
-              <li>Fraud scoring and anomaly detection.</li>
-              <li>Allowlist cohorts for early rollout.</li>
-              <li>Instant freeze hooks for confirmed abuse.</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>Governance</h3>
-            <ul class="list">
-              <li>Human review for edge cases and escalations.</li>
-              <li>Quorum approval for audit mode or sensitive actions.</li>
-              <li>Strict access controls and logging.</li>
-              <li>Documented incident response.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="security" class="card section-card" aria-label="Security and privacy">
-        <h2 class="section-title">Security and privacy defaults</h2>
-        <div class="two">
-          <div class="panel">
-            <h3>Key management</h3>
-            <ul class="list">
-              <li>Passkeys by default. Optional 2FA.</li>
-              <li>User keys stay client-side. Hardware-backed where possible.</li>
-              <li>Per-action keys and rotation.</li>
-              <li>Encrypted backups with user-controlled recovery.</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>Data minimization</h3>
-            <ul class="list">
-              <li>Short retention windows for metadata.</li>
-              <li>Collect only what you need for the product and compliance scope.</li>
-              <li>No third-party analytics scripts.</li>
-              <li>First-party metrics only, opt-in.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="pricing" class="card section-card" aria-label="Pricing">
-        <h2 class="section-title">Pricing</h2>
-        <p class="small">Swap these numbers. This is a clean starting layout.</p>
-
-        <div class="pricing">
-          <div class="card price">
-            <div class="tag">Pilot</div>
-            <div class="money">$0</div>
-            <p class="small">For closed cohorts.</p>
-            <ul class="list">
-              <li>Allowlist onboarding</li>
-              <li>Tiered limits</li>
-              <li>Internal ledger</li>
-            </ul>
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn primary" href="#contact">Request access</a>
-            </div>
-          </div>
-
-          <div class="card price">
-            <div class="tag">Pro</div>
-            <div class="money">$99</div>
-            <p class="small">For products shipping now.</p>
-            <ul class="list">
-              <li>SDK + dashboards</li>
-              <li>Policy engine</li>
-              <li>Fraud controls</li>
-              <li>Ops playbooks</li>
-            </ul>
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn primary" href="#contact">Talk pricing</a>
-            </div>
-          </div>
-
-          <div class="card price">
-            <div class="tag">Enterprise</div>
-            <div class="money">Custom</div>
-            <p class="small">For regulated scale.</p>
-            <ul class="list">
-              <li>Custom KYC/AML wiring</li>
-              <li>Audit mode governance</li>
-              <li>Security review support</li>
-              <li>SLAs</li>
-            </ul>
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn primary" href="#contact">Book a call</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" class="card section-card" aria-label="FAQ">
-        <h2 class="section-title">FAQ</h2>
-        <div class="two">
-          <div class="panel">
-            <h3>Is this “anonymous”?</h3>
-            <p>No. Users are verified at entry. The goal is to reduce public exposure and tracking, not to hide illicit activity.</p>
-          </div>
-          <div class="panel">
-            <h3>What does the token do?</h3>
-            <p>If you use a token, make it a utility for fees or credits. Don’t market it as an identity-hiding tool.</p>
-          </div>
-          <div class="panel">
-            <h3>Can you still support crypto rails?</h3>
-            <p>Yes, where legal, and with controls. The default experience can stay off public ledgers via internal balances.</p>
-          </div>
-          <div class="panel">
-            <h3>What about regulators?</h3>
-            <p>You build audit mode and selective disclosure into the core so you can comply without mass surveillance.</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <div>
-          <div class="brand" style="margin-bottom:10px">
-            <div class="logo" aria-hidden="true"></div>
-            <span>DopShield V2</span>
-          </div>
-          <p style="margin:0;max-width:80ch">Privacy-first product design for verified participants. Less tracking. Better security. Practical compliance.</p>
-          <p style="margin:10px 0 0">© <span id="year"></span> DopShield. All rights reserved.</p>
-        </div>
-
-        <div class="links" aria-label="Footer links">
-          <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms</a>
-          <a href="/security.html">Security</a>
-          <a href="/status.html">Status</a>
-          <a href="mailto:hello@example.com">Email</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <div class="cookie" id="cookie" role="region" aria-label="Cookie notice">
-    <div class="card">
-      <div class="cookie-row">
-        <p>We use essential storage for site functionality. Optional first-party analytics is off by default.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn" id="decline" type="button">Keep analytics off</button>
-          <button class="btn primary" id="accept" type="button">Enable analytics</button>
-        </div>
-      </div>
+  <div class="wrap">
+    <h1>DOPCOIN</h1>
+    <p>
+      DopCoin is a private capital layer for verified participants who value discretion, control, and long-term positioning.
+      No noise. No mass access. Entry is intentional.
+    </p>
+    <div class="cta">
+      To acquire DopCoin,<br>
+      email <a href="mailto:info@tradevessel.com">info@tradevessel.com</a>
+      <span>Serious inquiries only.</span>
     </div>
   </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const KEY = "ds_analytics_optin";
-    const banner = document.getElementById("cookie");
-    const saved = localStorage.getItem(KEY);
-    if (saved === null) banner.style.display = "block";
-
-    document.getElementById("decline").addEventListener("click", () => {
-      localStorage.setItem(KEY, "0");
-      banner.style.display = "none";
-    });
-
-    document.getElementById("accept").addEventListener("click", () => {
-      localStorage.setItem(KEY, "1");
-      banner.style.display = "none";
-      // Load your own self-hosted analytics here if you want.
-    });
-
-    document.querySelector("form")?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert("Thanks. Replace this with a real POST endpoint.");
-    });
-  </script>
 </body>
 </html>
